@@ -8,7 +8,7 @@ from picard.metadata import register_track_metadata_processor
 import re
 
 p_re = re.compile(r"\(.*?\)")
-v_re = re.compile(r"((\s|-)?(acoustic|akustisk|album|bonus|clean|club|cut|C=64|dance|dirty|disco|encore|extended|inch|live|original|radio|redux|rehearsal|reprise|re-|ringtone|session|short|studio|take|variant|version|vocal)(\s|-)?|.*?(capella)\s?|(\s|-)?(alternat|demo|dub|edit|ext|fail|instr|long|orchestra|record|remake|strument).*?|.*?mix.*?)")
+v_re = re.compile(r"((\s|-)?(acoustic|akustisk|album|bonus|clean|club|cut|C=64|dance|dirty|disco|encore|extended|inch|maxi|live|original|radio|redux|rehearsal|reprise|re-|ringtone|[Ss]ession|short|studio|take|variant|version|vocal)(\s|-)?|.*?(capella)\s?|(\s|-)?(alternat|demo|dub|edit|ext|fail|instr|long|orchestra|record|remake|strument|[Tt]ape|varv).*?|.*?(mix|inspel).*?)")
 
 def add_title_version(tagger, metadata, release, track):
     title = metadata["title"]
