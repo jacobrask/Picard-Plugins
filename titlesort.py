@@ -18,8 +18,8 @@ articles['swe'] = ['De', 'Den', 'Dom']
 
 # compile regular expressions
 re_articles = {}
-for lang in articles:
-    for n in range(len(articles[lang])):
+for lang, a in articles.iteritems():
+    for n in range(len(lang)):
         if n == 0:
             reg = articles[lang][n]
         else:
