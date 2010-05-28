@@ -13,30 +13,21 @@ articles = {}
 articles['deu'] = ['Der ', 'Das ', 'Die ', 'Eine? '] # German
 articles['eng'] = ['Th(e|a) ', 'Da ', 'An? '] # English
 articles['esp'] = ['El ', 'La ', 'L(o|a)s ', 'Una? ', 'Un(o|a)s '] # Spanish
-articles['fra'] = ['L(e|a)s?', 'L\'', 'Une? ', 'Des '] # French
-articles['ita'] = ['Il ', 'L(o|a|e)', 'L\'', 'I ', 'Gli ', 'Un(o|a)? ', 'Un\''] # Italian
+articles['fra'] = ['L(e|a)s? ', 'L\'', 'Une? ', 'Des '] # French
+articles['ita'] = ['Il ', 'L(o|a|e) ', 'L\'', 'I ', 'Gli ', 'Un(o|a)? ', 'Un\''] # Italian
 articles['swe'] = ['Den? ', 'Dom '] # Swedish
 
 # compile sort language regular expressions
 re_articles = {}
+regmul = ''
 for lang, a in articles.iteritems():
-    for i in range(len(lang)):
-        if i == 0:
-            reg = articles[lang][i]
-        else:
-            reg = reg + '|' + articles[lang][i]
+    reg = ''
+    for i in range(len(a)):
+        reg = '|' + articles[lang][i] + reg
         re_articles[lang] = re.compile(reg)
-
-# compile multiple language regular expression
-reg = ''
-for i, lang in enumerate(articles):
-    for j in range(len(lang)):
-        if i == 0 and j == 0:
-            reg = articles[lang][j]
-        else:
-            reg = reg + '|' + articles[lang][j]
-        print reg
-        re_articles['mul'] = re.compile(reg)
+    regmul = regmul + reg
+# all articles are collected and used for "multiple languages"
+re_articles['mul'] = re.compile(regmul[1:])
 
 def add_titlesort(tagger, metadata, release, track):
     if metadata["titlesort"]:
