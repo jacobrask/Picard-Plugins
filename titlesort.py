@@ -11,11 +11,11 @@ import re
 # define articles
 articles = {}
 articles['deu'] = ['Der ', 'Das ', 'Die ', 'Eine? '] # German
-articles['eng'] = ['Th(e|a) ', 'Da ', 'An? '] # English
-articles['esp'] = ['El ', 'La ', 'L(o|a)s ', 'Una? ', 'Un(o|a)s '] # Spanish
-articles['fra'] = ['L(e|a)s? ', 'L\'', 'Une? ', 'Des '] # French
-articles['ita'] = ['Il ', 'L(o|a|e) ', 'L\'', 'I ', 'Gli ', 'Un(o|a)? ', 'Un\''] # Italian
-articles['swe'] = ['De(n|t)? ', 'Dom ', 'E(n|tt) '] # Swedish
+articles['eng'] = ['The ', 'Tha ', 'Da ', 'An? '] # English
+articles['esp'] = ['El ', 'La ', 'Los ', 'Las ', 'Una? ', 'Unas ', 'Unos '] # Spanish
+articles['fra'] = ['Les? ', 'La ', 'L\'', 'Une? ', 'Des '] # French
+articles['ita'] = ['Il ', 'Lo ', 'La ', 'Le ', 'L\'', 'I ', 'Gli ', 'Uno? ', 'Una ', 'Un\''] # Italian
+articles['swe'] = ['Den? ', 'Det ', 'Dom ', 'En ', 'Ett '] # Swedish
 
 # compile sort language regular expressions
 re_articles = {}
@@ -24,7 +24,7 @@ for lang, a in articles.iteritems():
     reg = ''
     for i in range(len(a)):
         reg = '|' + articles[lang][i] + reg
-        re_articles[lang] = re.compile(reg)
+        re_articles[lang] = re.compile(reg[1:])
     regmul = regmul + reg
 # all articles are collected and used for "multiple languages"
 re_articles['mul'] = re.compile(regmul[1:])
