@@ -10,11 +10,12 @@ import re
 
 # define articles
 articles = {}
-articles['eng'] = ['The', 'Tha', 'Da']
-articles['esp'] = ['El', 'La', 'Los', 'Las']
-articles['deu'] = ['Der', 'Das', 'Die']
-articles['fra'] = ['Les', 'Le', 'La']
-articles['swe'] = ['De', 'Den', 'Dom']
+articles['deu'] = ['Der', 'Das', 'Die', 'Eine?'] # German
+articles['eng'] = ['Th(e|a)', 'Da', 'An?'] # English
+articles['esp'] = ['El', 'La', 'L(o|a)s', 'Una?', 'Un(o|a)s'] # Spanish
+articles['fra'] = ['L(e|a|\')s?', 'Une?', 'Des'] # French
+articles['ita'] = ['Il', 'L(o|a|e\')', 'I', 'Gli', 'Un(o|a|\')?'] # Italian
+articles['swe'] = ['Den?', 'Dom'] # Swedish
 
 # compile sort language regular expressions
 re_articles = {}
