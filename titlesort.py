@@ -10,12 +10,12 @@ import re
 
 # define articles
 articles = {}
-articles['deu'] = ['Der', 'Das', 'Die', 'Eine?'] # German
-articles['eng'] = ['Th(e|a)', 'Da', 'An?'] # English
-articles['esp'] = ['El', 'La', 'L(o|a)s', 'Una?', 'Un(o|a)s'] # Spanish
-articles['fra'] = ['L(e|a|\')s?', 'Une?', 'Des'] # French
-articles['ita'] = ['Il', 'L(o|a|e\')', 'I', 'Gli', 'Un(o|a|\')?'] # Italian
-articles['swe'] = ['Den?', 'Dom'] # Swedish
+articles['deu'] = ['Der ', 'Das ', 'Die ', 'Eine? '] # German
+articles['eng'] = ['Th(e|a) ', 'Da ', 'An? '] # English
+articles['esp'] = ['El ', 'La ', 'L(o|a)s ', 'Una? ', 'Un(o|a)s '] # Spanish
+articles['fra'] = ['L(e|a)s?', 'L\'', 'Une? ', 'Des '] # French
+articles['ita'] = ['Il ', 'L(o|a|e)', 'L\'', 'I ', 'Gli ', 'Un(o|a)? ', 'Un\''] # Italian
+articles['swe'] = ['Den? ', 'Dom '] # Swedish
 
 # compile sort language regular expressions
 re_articles = {}
@@ -24,7 +24,7 @@ for lang, a in articles.iteritems():
         if i == 0:
             reg = articles[lang][i]
         else:
-            reg = reg + ' |' + articles[lang][i]
+            reg = reg + '|' + articles[lang][i]
         re_articles[lang] = re.compile(reg)
 
 # compile multiple language regular expression
@@ -34,7 +34,7 @@ for i, lang in enumerate(articles):
         if i == 0 and j == 0:
             reg = articles[lang][j]
         else:
-            reg = reg + ' |' + articles[lang][j]
+            reg = reg + '|' + articles[lang][j]
         print reg
         re_articles['mul'] = re.compile(reg)
 
