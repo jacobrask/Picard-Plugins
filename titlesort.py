@@ -15,7 +15,7 @@ articles['eng'] = ['Th(e|a) ', 'Da ', 'An? '] # English
 articles['esp'] = ['El ', 'La ', 'L(o|a)s ', 'Una? ', 'Un(o|a)s '] # Spanish
 articles['fra'] = ['L(e|a)s? ', 'L\'', 'Une? ', 'Des '] # French
 articles['ita'] = ['Il ', 'L(o|a|e) ', 'L\'', 'I ', 'Gli ', 'Un(o|a)? ', 'Un\''] # Italian
-articles['swe'] = ['Den? ', 'Dom '] # Swedish
+articles['swe'] = ['De(n|t)? ', 'Dom ', 'E(n|tt) '] # Swedish
 
 # compile sort language regular expressions
 re_articles = {}
