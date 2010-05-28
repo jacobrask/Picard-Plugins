@@ -16,15 +16,26 @@ articles['deu'] = ['Der', 'Das', 'Die']
 articles['fra'] = ['Les', 'Le', 'La']
 articles['swe'] = ['De', 'Den', 'Dom']
 
-# compile regular expressions
+# compile sort language regular expressions
 re_articles = {}
 for lang, a in articles.iteritems():
-    for n in range(len(lang)):
-        if n == 0:
-            reg = articles[lang][n]
+    for i in range(len(lang)):
+        if i == 0:
+            reg = articles[lang][i]
         else:
-            reg = reg + ' |' + articles[lang][n]
+            reg = reg + ' |' + articles[lang][i]
         re_articles[lang] = re.compile(reg)
+
+# compile multiple language regular expression
+reg = ''
+for i, lang in enumerate(articles):
+    for j in range(len(lang)):
+        if i == 0 and j == 0:
+            reg = articles[lang][j]
+        else:
+            reg = reg + ' |' + articles[lang][j]
+        print reg
+        re_articles['mul'] = re.compile(reg)
 
 def add_titlesort(tagger, metadata, release, track):
     if metadata["titlesort"]:
