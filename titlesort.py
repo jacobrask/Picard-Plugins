@@ -30,9 +30,7 @@ for lang, a in articles.iteritems():
 re_articles['mul'] = re.compile(regmul[1:])
 
 def make_sorttitle(title, lang):
-    if lang and lang in re_articles:
-        lang = lang
-    else:
+    if lang not in re_articles:
         lang = "mul"
     sort_re = re_articles[lang]
     match = sort_re.match(title)
