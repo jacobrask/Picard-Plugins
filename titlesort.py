@@ -23,43 +23,39 @@ regmul = ''
 for lang, a in articles.iteritems():
     reg = ''
     for i in range(len(a)):
-        reg = '|' + articles[lang][i] + reg
+        reg = '|^' + articles[lang][i] + reg
         re_articles[lang] = re.compile(reg[1:])
     regmul = regmul + reg
 # all articles are collected and used for "multiple languages"
 re_articles['mul'] = re.compile(regmul[1:])
+
+def make_sorttitle(title, lang):
+    if lang and lang in re_articles:
+        lang = lang
+    else:
+        lang = "mul"
+    sort_re = re_articles[lang]
+    match = sort_re.match(title)
+    titlesort = title
+    if match:
+        sort_prefix = match.group().strip()
+        titlesort = sort_re.sub("", title).strip() + ", " + sort_prefix
+        titlesort = titlesort[0].upper() + titlesort[1:] # capitalize first letter
+    return titlesort
 
 def add_titlesort(tagger, metadata, release, track):
     if metadata["titlesort"]:
         titlesort = metadata["titlesort"]
     else:
         titlesort = metadata["title"]
-    lang = "mul" # default
-    if metadata["language"] and metadata["language"] in re_articles:
-        lang = metadata["language"]
-    sort_re = re_articles[lang]
-    match = sort_re.match(titlesort)
-    if match:
-        sort_prefix = match.group().strip()
-        titlesort = sort_re.sub("", titlesort).strip() + ", " + sort_prefix
-        titlesort = titlesort[0].upper() + titlesort[1:] # capitalize first letter
-    metadata["titlesort"] = titlesort
+    metadata["titlesort"] = make_sorttitle(titlesort, metadata["language"])
 
 def add_albumsort(tagger, metadata, release):
     if metadata["albumsort"]:
         titlesort = metadata["albumsort"]
     else:
         titlesort = metadata["album"]
-    lang = "mul" # default
-    if metadata["language"] and metadata["language"] in re_articles:
-        lang = metadata["language"]
-    sort_re = re_articles[lang]
-    match = sort_re.match(titlesort)
-    if match:
-        sort_prefix = match.group().strip()
-        titlesort = sort_re.sub("", titlesort).strip() + ", " + sort_prefix
-        titlesort = titlesort[0].upper() + titlesort[1:] # capitalize first letter
-    metadata["albumsort"] = titlesort
+    metadata["albumsort"] = make_sorttitle(titlesort, metadata["language"])
 
 register_track_metadata_processor(add_titlesort)
 register_album_metadata_processor(add_albumsort)
