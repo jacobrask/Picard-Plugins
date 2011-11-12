@@ -1,8 +1,8 @@
 PLUGIN_NAME = 'Title sort names'
 PLUGIN_AUTHOR = 'Jacob Rask'
 PLUGIN_DESCRIPTION = 'Guesses title and album sortnames (language specific) and adds as titlesort and albumsort tags.'
-PLUGIN_VERSION = "0.1.3"
-PLUGIN_API_VERSIONS = ["0.12", "0.12"]
+PLUGIN_VERSION = "0.1.4"
+PLUGIN_API_VERSIONS = ["0.12", "0.15"]
 
 from picard.metadata import register_track_metadata_processor
 from picard.metadata import register_album_metadata_processor
