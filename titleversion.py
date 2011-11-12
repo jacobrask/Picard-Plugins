@@ -1,8 +1,8 @@
 PLUGIN_NAME = 'Move metadata to version tag'
 PLUGIN_AUTHOR = 'Jacob Rask'
 PLUGIN_DESCRIPTION = 'Moves song metadata such as "demo", "live" from title and titlesort to version tag.'
-PLUGIN_VERSION = "0.1.3"
-PLUGIN_API_VERSIONS = ["0.12", "0.12"]
+PLUGIN_VERSION = "0.1.4"
+PLUGIN_API_VERSIONS = ["0.12", "0.15"]
 
 from picard.metadata import register_track_metadata_processor
 import re
